@@ -1,5 +1,6 @@
 package ad.GestionCatering.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -14,6 +15,7 @@ public class Pedidos {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonIgnore
     private Clientes cliente;
     private Date fecha_pedido;
     @Column(nullable = false)
@@ -22,8 +24,10 @@ public class Pedidos {
     private Double monto_total;
     @ManyToOne
     @JoinColumn(name = "personal_id", nullable = false)
+    @JsonIgnore
     private Personal personal;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ArticulosPedido> articulosPedido;
 
     public Pedidos() {

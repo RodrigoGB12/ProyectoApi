@@ -1,5 +1,6 @@
 package ad.GestionCatering.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,15 +11,18 @@ public class ArticulosPedido {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "pedido_id")
+    @JsonIgnore
     private Pedidos pedido;
     @ManyToOne
     @JoinColumn(name = "articulo_menu_id")
+    @JsonIgnore
     private ArticulosMenu articuloMenu;
     @Column(nullable = false)
     private int cantidad;
     private Double precio;
     @ManyToOne
     @JoinColumn(name = "personal_id")
+    @JsonIgnore
     private Personal personal;
 
     public ArticulosPedido() {

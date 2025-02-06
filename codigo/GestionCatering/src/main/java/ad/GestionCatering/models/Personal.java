@@ -1,5 +1,6 @@
 package ad.GestionCatering.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -21,9 +22,11 @@ public class Personal {
     @Column(length = 20,nullable = false,unique = true)
     private String dni;
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Pedidos> pedidos; // Relación con Pedido
 
     @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ArticulosPedido> articulosPedidos;
 
     public Personal() {

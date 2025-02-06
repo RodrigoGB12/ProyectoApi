@@ -1,5 +1,6 @@
 package ad.GestionCatering.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ArticulosMenu {
     private String imagen;
 
     @OneToMany(mappedBy = "articuloMenu", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<ArticulosMenuAlergenos> articulosMenuAlergenos;
 
 

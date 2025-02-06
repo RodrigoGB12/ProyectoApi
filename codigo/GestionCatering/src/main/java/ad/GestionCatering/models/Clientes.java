@@ -1,5 +1,6 @@
 package ad.GestionCatering.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class Clientes {
     @Column(length = 20,unique = true,nullable = false)
     private String dni;
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Pedidos> pedidos;
 
     public Clientes() {

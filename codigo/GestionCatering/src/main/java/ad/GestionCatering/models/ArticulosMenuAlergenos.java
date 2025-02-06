@@ -1,6 +1,7 @@
 package ad.GestionCatering.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,10 +15,12 @@ public class ArticulosMenuAlergenos {
 
     @ManyToOne
     @JoinColumn(name = "articulo_id")
+    @JsonIgnore
     private ArticulosMenu articuloMenu;
 
     @ManyToOne
     @JoinColumn(name = "alergeno_id")
+    @JsonIgnore
     private Alergenos alergeno;
 
     public ArticulosMenuAlergenos() {
