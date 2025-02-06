@@ -16,6 +16,8 @@ public class ArticulosMenu {
     @Column(nullable = false)
     private Double precio;
 
+    private String imagen;
+
     @OneToMany(mappedBy = "articuloMenu", cascade = CascadeType.ALL)
     private List<ArticulosMenuAlergenos> articulosMenuAlergenos;
 
@@ -25,6 +27,14 @@ public class ArticulosMenu {
 
     public Long getId() {
         return id;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public void setId(Long id) {

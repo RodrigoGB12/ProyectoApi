@@ -31,6 +31,7 @@ CREATE TABLE articulos_menu (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255),
+    imagen VARCHAR(255),
     precio DECIMAL(10, 2) NOT NULL
 );
 

@@ -1,9 +1,9 @@
 package ad.GestionCatering.repositories;
 
-import ad.GestionCatering.models.Alergenos;
+import ad.GestionCatering.models.ArticulosMenuAlergenos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ArticulosMenuAlergenos extends JpaRepository<ArticulosMenuAlergenos,Long> {
+public interface ArticulosMenuAlergenosRepository extends JpaRepository<ArticulosMenuAlergenos,Long> {
 }
