@@ -2,6 +2,7 @@ package ad.GestionCatering.controllers;
 
 import ad.GestionCatering.models.Personal;
 import ad.GestionCatering.services.PersonalService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class PersonalController {
     }
 
     @PostMapping
-    public ResponseEntity<Personal> createPersonal(@RequestBody Personal personal) {
+    public ResponseEntity<Personal> createPersonal(@RequestBody @Valid Personal personal) {
         Personal savedPersonal = personalService.save(personal);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPersonal);
     }

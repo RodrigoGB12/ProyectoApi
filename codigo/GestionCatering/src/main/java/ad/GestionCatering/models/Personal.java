@@ -2,6 +2,7 @@ package ad.GestionCatering.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Personal {
     @Enumerated(EnumType.STRING)
     private Rol rol;
     @Column(length = 100,nullable = false,unique = true)
+    @Email(message = "El correo debe tener un formato válido")
     private String correo_electronico;
     @Column(length = 15)
     private String telefono;

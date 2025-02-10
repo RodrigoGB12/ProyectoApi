@@ -2,6 +2,7 @@ package ad.GestionCatering.controllers;
 
 import ad.GestionCatering.models.Clientes;
 import ad.GestionCatering.services.ClientesService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class ClientesController {
     }
 
     @PostMapping
-    public ResponseEntity<Clientes> createCliente(@RequestBody Clientes cliente) {
+    public ResponseEntity<Clientes> createCliente(@RequestBody @Valid Clientes cliente) {
         Clientes savedCliente = clientesService.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCliente);
     }

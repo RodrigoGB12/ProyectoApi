@@ -15,7 +15,6 @@ public class ArticulosPedido {
     private Pedidos pedido;
     @ManyToOne
     @JoinColumn(name = "articulo_menu_id")
-    @JsonIgnore
     private ArticulosMenu articuloMenu;
     @Column(nullable = false)
     private int cantidad;

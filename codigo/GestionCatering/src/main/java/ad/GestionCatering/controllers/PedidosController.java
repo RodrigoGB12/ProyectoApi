@@ -1,5 +1,7 @@
 package ad.GestionCatering.controllers;
 
+import ad.GestionCatering.models.ArticulosPedido;
+import ad.GestionCatering.models.PedidoCompletoDTO;
 import ad.GestionCatering.models.Pedidos;
 import ad.GestionCatering.services.PedidosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/pedidos")
+@RequestMapping("/pedidos")
 public class PedidosController {
 
     @Autowired
@@ -20,6 +22,30 @@ public class PedidosController {
     @GetMapping
     public List<Pedidos> getAllPedidos() {
         return pedidosService.findAll();
+    }
+
+    @GetMapping("/detalles/{id}")
+    public PedidoCompletoDTO getDetallePedido(@PathVariable Long id) {
+        Pedidos pedido = pedidosService.findById(id).orElse(new Pedidos());
+        if (pedido.getEstado() == null){
+            return null;
+        }else {
+            PedidoCompletoDTO pedidoCompletoDTO = new PedidoCompletoDTO();
+            pedidoCompletoDTO.setId(pedido.getId());
+            pedidoCompletoDTO.setFecha_pedido(pedido.getFecha_pedido());
+            pedidoCompletoDTO.setEstado(pedido.getEstado());
+            pedidoCompletoDTO.setNombre(pedido.getCliente().getNombre());
+            pedidoCompletoDTO.setDni(pedido.getCliente().getDni());
+            pedidoCompletoDTO.setArticulosPedido(pedido.getArticulosPedido());
+            pedidoCompletoDTO.setNombrePersonal(pedido.getPersonal().getNombre());
+
+            double total = 0;
+            for (ArticulosPedido articulosPedido : pedidoCompletoDTO.getArticulosPedido()){
+                total = total + articulosPedido.getArticuloMenu().getPrecio() * articulosPedido.getCantidad();
+            }
+            pedidoCompletoDTO.setMonto_total(total);
+            return pedidoCompletoDTO;
+        }
     }
 
     @GetMapping("/{id}")

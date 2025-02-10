@@ -14,13 +14,11 @@ public class ArticulosMenuAlergenos {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "articulo_id")
-    @JsonIgnore
+    @JoinColumn(name = "articulo_menu_id")
     private ArticulosMenu articuloMenu;
 
     @ManyToOne
     @JoinColumn(name = "alergeno_id")
-    @JsonIgnore
     private Alergenos alergeno;
 
     public ArticulosMenuAlergenos() {
