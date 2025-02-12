@@ -24,7 +24,6 @@ public class Pedidos {
     private Double monto_total;
     @ManyToOne
     @JoinColumn(name = "personal_id", nullable = false)
-    @JsonIgnore
     private Personal personal;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     @JsonIgnore
