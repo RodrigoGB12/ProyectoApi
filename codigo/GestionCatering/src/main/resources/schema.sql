@@ -65,3 +65,5 @@ CREATE TABLE articulos_menu_alergenos (
     FOREIGN KEY (articulo_menu_id) REFERENCES articulos_menu(id),
     FOREIGN KEY (alergeno_id) REFERENCES alergenos(id)
 );
+
+ALTER TABLE articulos_menu ADD COLUMN imagen VARCHAR(255);

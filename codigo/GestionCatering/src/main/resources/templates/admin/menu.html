@@ -30,11 +30,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/dashboard}">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alérgenos</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alergenos</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/clientes}">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/menu}">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a></li>
-                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/articulos}">Artículos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/personal}">Personal</a></li>
             </ul>
         </div>
     </div>
@@ -54,6 +55,7 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Precio</th>
+                <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -63,10 +65,11 @@
                 <td th:text="${articulo.nombre}">Artículo</td>
                 <td th:text="${articulo.descripcion}">Descripción</td>
                 <td th:text="${articulo.precio}">10.50</td>
+                <td th:text="${articulo.imagen != null ? articulo.imagen : 'Imagen no asignada'}">blabla.png</td>
                 <td>
-                    <a th:href="@{'/admin/articulos/edit/' + ${articulo.id}}"
+                    <a th:href="@{'/admin/menu/edit/' + ${articulo.id}}"
                        class="btn btn-sm btn-primary me-1">Editar</a>
-                    <a th:href="@{'/admin/articulos/delete/' + ${articulo.id}}" class="btn btn-sm btn-danger"
+                    <a th:href="@{'/admin/menu/delete/' + ${articulo.id}}" class="btn btn-sm btn-danger"
                        onclick="return confirm('¿Está seguro de eliminar este artículo?');">Eliminar</a>
                 </td>
             </tr>
@@ -81,7 +84,7 @@
                 <h2 th:text="${articulo.id} == null ? 'Crear Nuevo Artículo' : 'Editar Artículo'">Formulario de Artículo</h2>
             </div>
             <div class="card-body">
-                <form th:action="@{/admin/articulos/save}" th:object="${articulo}" method="post">
+                <form th:action="@{/admin/menu/save}" th:object="${articulo}" method="post">
                     <input type="hidden" th:field="*{id}">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
@@ -95,11 +98,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="precio" class="form-label">Precio:</label>
-                        <input type="number" th:field="*{precio}" id="precio" class="form-control"
+                        <input type="number" step="0.01" th:field="*{precio}" id="precio" class="form-control"
                                placeholder="Precio" required>
                     </div>
                     <button type="submit" class="btn btn-success me-2">Guardar</button>
-                    <a th:href="@{/admin/articulos}" class="btn btn-secondary">Cancelar</a>
+                    <a th:href="@{/admin/menu}" class="btn btn-secondary">Cancelar</a>
                 </form>
             </div>
         </div>

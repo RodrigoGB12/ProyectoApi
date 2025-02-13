@@ -16,7 +16,7 @@ public class WebPersonalController {
 
     @GetMapping
     public String listPersonal(Model model) {
-        model.addAttribute("personal", personalRepository.findAll());
+        model.addAttribute("personalList", personalRepository.findAll());
         if (!model.containsAttribute("personal")) {
             model.addAttribute("personal", new Personal());
         }

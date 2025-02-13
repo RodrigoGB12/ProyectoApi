@@ -60,6 +60,8 @@ public class WebPedidosController {
         model.addAttribute("pedido", pedido);
         model.addAttribute("pedidos", pedidoRepository.findAll());
         model.addAttribute("clientes", clienteRepository.findAll());
+        model.addAttribute("personals",personalRepository.findAll());
+
         return "admin/pedidos";
     }
 

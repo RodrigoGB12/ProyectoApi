@@ -18,9 +18,9 @@ public class WebMenuController {
 
     @GetMapping
     public String listMenu(Model model) {
-        model.addAttribute("menus", menuRepository.findAll());
-        if (!model.containsAttribute("menu")) {
-            model.addAttribute("menu", new ArticulosMenu());
+        model.addAttribute("articulos", menuRepository.findAll());
+        if (!model.containsAttribute("articulo")) {
+            model.addAttribute("articulo", new ArticulosMenu());
         }
         return "admin/menu";
     }
@@ -35,8 +35,8 @@ public class WebMenuController {
     public String editMenu(@PathVariable Long id, Model model) {
         ArticulosMenu menu = menuRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID de menú inválido: " + id));
-        model.addAttribute("menu", menu);
-        model.addAttribute("menus", menuRepository.findAll());
+        model.addAttribute("articulo", menu);
+        model.addAttribute("articulos", menuRepository.findAll());
         return "admin/menu";
     }
 

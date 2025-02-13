@@ -30,9 +30,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/dashboard}">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alérgenos</a></li>
-                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/clientes}">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alergenos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/clientes}">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/menu}">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/personal}">Personal</a></li>
             </ul>
@@ -55,6 +56,7 @@
                 <th>Correo</th>
                 <th>Teléfono</th>
                 <th>DNI</th>
+                <th>Direccion</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -65,6 +67,7 @@
                 <td th:text="${cliente.correo_electronico}">cliente@mail.com</td>
                 <td th:text="${cliente.telefono}">123456789</td>
                 <td th:text="${cliente.dni}">12345678A</td>
+                <td th:text="${cliente.direccion}">12345678A</td>
                 <td>
                     <a th:href="@{'/admin/clientes/edit/' + ${cliente.id}}"
                        class="btn btn-sm btn-primary me-1">Editar</a>
@@ -104,6 +107,11 @@
                         <label for="dni" class="form-label">DNI:</label>
                         <input type="text" th:field="*{dni}" id="dni" class="form-control"
                                placeholder="DNI" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label">Direccion:</label>
+                        <input type="text" th:field="*{direccion}" id="direccion" class="form-control"
+                               placeholder="Direccion" required>
                     </div>
                     <button type="submit" class="btn btn-success me-2">Guardar</button>
                     <a th:href="@{/admin/clientes}" class="btn btn-secondary">Cancelar</a>

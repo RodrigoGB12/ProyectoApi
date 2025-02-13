@@ -30,10 +30,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/dashboard}">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alérgenos</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alergenos</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/clientes}">Clientes</a></li>
-                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/pedidos}">Pedidos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/menu}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/personal}">Personal</a></li>
             </ul>
         </div>
@@ -91,7 +92,7 @@
                         <label for="cliente" class="form-label">Cliente:</label>
                         <select name="clienteId" id="cliente" class="form-select" required>
                             <option value="">Seleccione un cliente</option>
-                            <option th:each="cl : ${clientes}" th:value="${cl.id}" th:text="${cl.nombre}"></option>
+                            <option th:each="cl : ${clientes}" th:value="${cl.id}" th:text="${cl.nombre} " th:selected="${cl.id == pedido.cliente.id}"></option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -101,12 +102,16 @@
 
                     <div class="mb-3">
                         <label for="estado" class="form-label">Estado:</label>
-                        <input type="text" th:field="*{estado}" id="estado" class="form-control"
-                               placeholder="Estado del pedido" required>
+                        <select th:field="*{estado}" id="estado" class="form-control" required>
+                            <option value="En proceso">En proceso</option>
+                            <option value="Entregado">Entregado</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="monto_total" class="form-label">Monto Total:</label>
-                        <input type="number" th:field="*{monto_total}" id="monto_total" class="form-control"
+                        <input type="number" step="0.01" th:field="*{monto_total}" id="monto_total" class="form-control"
                                placeholder="Monto total" required>
                     </div>
 
@@ -114,7 +119,7 @@
                         <label for="personal" class="form-label">Personal:</label>
                         <select name="personalId" id="personal" class="form-select" required>
                             <option value="">Seleccione un miembro del personal</option>
-                            <option th:each="pe : ${personals}" th:value="${pe.id}" th:text="${pe.nombre}"></option>
+                            <option th:each="pe : ${personals}" th:value="${pe.id}" th:text="${pe.nombre}" th:selected="${pe.id == pedido.personal?.id}"></option>
                         </select>
                     </div>
 

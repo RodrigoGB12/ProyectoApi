@@ -1,0 +1,3 @@
+filtrar los trabajadores en el backend y poner bien los precios del pedido en el backend
+
+Luego mirar seguridad y cambio de fecha

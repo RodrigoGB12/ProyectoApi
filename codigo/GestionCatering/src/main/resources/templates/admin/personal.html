@@ -30,11 +30,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/dashboard}">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alérgenos</a></li>
+                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alergenos</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/clientes}">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/menu}">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a></li>
-                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/personal}">Personal</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/personal}">Personal</a></li>
             </ul>
         </div>
     </div>
@@ -60,7 +61,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="personal : ${personal}">
+            <tr th:each="personal : ${personalList}">
                 <td th:text="${personal.id}">1</td>
                 <td th:text="${personal.nombre}">Nombre</td>
                 <td th:text="${personal.correo_electronico}">email@domain.com</td>
@@ -104,9 +105,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="rol" class="form-label">Rol:</label>
-                        <input type="text" th:field="*{rol}" id="rol" class="form-control"
-                               placeholder="Rol del personal" required>
+                        <select th:field="*{rol}" id="rol" class="form-control" required>
+                            <option value="Conductor">Conductor</option>
+                            <option value="Cocinero">Cocinero</option>
+                        </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="dni" class="form-label">DNI:</label>
                         <input type="text" th:field="*{dni}" id="dni" class="form-control"
