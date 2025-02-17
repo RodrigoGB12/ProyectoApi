@@ -36,6 +36,8 @@
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/menu}">Menu</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin/personal}">Personal</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/articulosMenuAlergenos}">Menu-Alergenos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/articulosPedido}">Menu-Pedidos</a></li>
             </ul>
         </div>
     </div>
@@ -92,7 +94,7 @@
                         <label for="cliente" class="form-label">Cliente:</label>
                         <select name="clienteId" id="cliente" class="form-select" required>
                             <option value="">Seleccione un cliente</option>
-                            <option th:each="cl : ${clientes}" th:value="${cl.id}" th:text="${cl.nombre} " th:selected="${cl.id == pedido.cliente.id}"></option>
+                            <option th:each="cl : ${clientes}" th:value="${cl.id}" th:text="${cl.nombre} " th:selected="${pedido.cliente!=null ? cl.id == pedido.cliente.id : false}"></option>
                         </select>
                     </div>
                     <div class="mb-3">

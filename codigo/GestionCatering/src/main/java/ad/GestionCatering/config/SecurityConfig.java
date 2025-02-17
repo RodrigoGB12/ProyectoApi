@@ -20,11 +20,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/**").permitAll() // Endpoints públicos
-                        .anyRequest().authenticated() // los demás requieren autenticación
+                        .requestMatchers("/menu").permitAll()
+                        .anyRequest().authenticated()
                 )
-                .httpBasic(withDefaults()).csrf().disable().headers().frameOptions().disable(); // Habilita la autenticación básica
+                .httpBasic(withDefaults()); // Habilita la autenticación básica
 
         return http.build();
     }

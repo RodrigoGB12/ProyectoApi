@@ -73,3 +73,8 @@ INSERT INTO articulos_pedido (pedido_id, articulo_menu_id, cantidad, precio, per
 (3, 5, 1, 7.50, 5),
 (4, 6, 4, 6.99, 1),
 (5, 7, 1, 14.00, 2);
+
+INSERT INTO usuarios (nombre, contraseña, rol) VALUES
+('admin', 'abc123,', 'admin'),
+('user1', 'usu', 'user'),
+('user2', 'usu2', 'user');

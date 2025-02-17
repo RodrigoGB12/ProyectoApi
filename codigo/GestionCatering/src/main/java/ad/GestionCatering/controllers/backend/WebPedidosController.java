@@ -3,6 +3,7 @@ package ad.GestionCatering.controllers.backend;
 import ad.GestionCatering.models.Clientes;
 import ad.GestionCatering.models.Pedidos;
 import ad.GestionCatering.models.Personal;
+import ad.GestionCatering.models.Rol;
 import ad.GestionCatering.repositories.ClientesRepository;
 import ad.GestionCatering.repositories.PedidosRepository;
 import ad.GestionCatering.repositories.PersonalRepository;
@@ -10,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/pedidos")
@@ -32,7 +36,16 @@ public class WebPedidosController {
         }
         // Se añade la lista de clientes para el combo
         model.addAttribute("clientes", clienteRepository.findAll());
-        model.addAttribute("personals", personalRepository.findAll());
+
+        List<Personal> listaPersonalTodos = personalRepository.findAll();
+        List<Personal> listaPersonal = new ArrayList<>();
+
+        for (Personal personal:listaPersonalTodos){
+            if (personal.getRol().name().equals("Conductor")){
+                listaPersonal.add(personal);
+            }
+        }
+        model.addAttribute("personals",listaPersonal);
         return "admin/pedidos";
     }
 
@@ -60,7 +73,16 @@ public class WebPedidosController {
         model.addAttribute("pedido", pedido);
         model.addAttribute("pedidos", pedidoRepository.findAll());
         model.addAttribute("clientes", clienteRepository.findAll());
-        model.addAttribute("personals",personalRepository.findAll());
+
+        List<Personal> listaPersonalTodos = personalRepository.findAll();
+        List<Personal> listaPersonal = new ArrayList<>();
+
+        for (Personal personal:listaPersonalTodos){
+            if (personal.getRol().name().equals("Conductor")){
+                listaPersonal.add(personal);
+            }
+        }
+        model.addAttribute("personals",listaPersonal);
 
         return "admin/pedidos";
     }

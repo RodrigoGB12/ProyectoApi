@@ -67,3 +67,11 @@ CREATE TABLE articulos_menu_alergenos (
 );
 
 ALTER TABLE articulos_menu ADD COLUMN imagen VARCHAR(255);
+
+
+CREATE TABLE usuarios (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    contraseña VARCHAR(255) NOT NULL,
+    rol ENUM('admin', 'user') NOT NULL
+);

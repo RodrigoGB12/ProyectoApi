@@ -1,6 +1,8 @@
 package ad.GestionCatering.controllers.backend;
 
 import ad.GestionCatering.models.ArticulosPedido;
+import ad.GestionCatering.models.Personal;
+import ad.GestionCatering.models.Rol;
 import ad.GestionCatering.repositories.ArticulosMenuRepository;
 import ad.GestionCatering.repositories.ArticulosPedidoRepository;
 import ad.GestionCatering.repositories.PedidosRepository;
@@ -9,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
     @RequestMapping("/admin/articulosPedido")
@@ -32,7 +37,17 @@ import org.springframework.web.bind.annotation.*;
             model.addAttribute("articulosPedidos", articulosPedidoRepository.findAll());
             model.addAttribute("pedidos", pedidosRepository.findAll());
             model.addAttribute("articulosMenu", articulosMenuRepository.findAll());
-            model.addAttribute("personales", personalRepository.findAll());
+
+            List<Personal> listaPersonalTodos = personalRepository.findAll();
+            List<Personal> listaPersonal = new ArrayList<>();
+
+            for (Personal personal:listaPersonalTodos){
+                if (personal.getRol().name().equals("Cocinero")){
+                    listaPersonal.add(personal);
+                }
+            }
+            model.addAttribute("personales",listaPersonal);
+
             model.addAttribute("articuloPedido", new ArticulosPedido()); // Para una nueva relación
             return "admin/articulosPedido"; // Página con tabla y formulario
         }
@@ -45,7 +60,15 @@ import org.springframework.web.bind.annotation.*;
             model.addAttribute("articuloPedido", articuloPedido); // Relación a editar
             model.addAttribute("pedidos", pedidosRepository.findAll());
             model.addAttribute("articulosMenu", articulosMenuRepository.findAll());
-            model.addAttribute("personales", personalRepository.findAll());
+            List<Personal> listaPersonalTodos = personalRepository.findAll();
+            List<Personal> listaPersonal = new ArrayList<>();
+
+            for (Personal personal:listaPersonalTodos){
+                if (personal.getRol().name().equals("Cocinero")){
+                    listaPersonal.add(personal);
+                }
+            }
+            model.addAttribute("personales",listaPersonal);
             return "admin/articulosPedido"; // Página con tabla y formulario
         }
 

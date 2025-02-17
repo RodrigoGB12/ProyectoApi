@@ -10,7 +10,26 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="#">Mi Backend</a>
+        <a class="navbar-brand" href="#">
+            <img src="/images/logo.png" alt="Logo" onerror="this.style.display='none';">
+            Mi Backend
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" th:href="@{/admin/dashboard}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/alergenos}">Alergenos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/clientes}">Clientes</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/menu}">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/personal}">Personal</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/articulosMenuAlergenos}">Menu-Alergenos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin/articulosPedido}">Menu-Pedidos</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -18,8 +37,9 @@
     <h1>Relaciones Artículos - Alergenos</h1>
 
     <!-- Tabla de Relaciones -->
-    <table class="table table-striped">
-        <thead>
+    <h2>Listado de Articulos-Menu</h2>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>Artículo</th>
