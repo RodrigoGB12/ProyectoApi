@@ -2,26 +2,39 @@ package ad.GestionCatering.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name = "articulos_pedido")
 public class ArticulosPedido {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID único para cada artículo del pedido", example = "1", required = true)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     @JsonIgnore
+    @Schema(description = "Pedido al que pertenece este artículo", required = true)
     private Pedidos pedido;
+
     @ManyToOne
     @JoinColumn(name = "articulo_menu_id")
+    @Schema(description = "Artículo del menú asociado a este pedido", required = true)
     private ArticulosMenu articuloMenu;
+
     @Column(nullable = false)
+    @Schema(description = "Cantidad de unidades de este artículo en el pedido", example = "2", required = true)
     private int cantidad;
+
+    @Schema(description = "Precio del artículo en este pedido", example = "15.99")
     private Double precio;
+
     @ManyToOne
     @JoinColumn(name = "personal_id")
     @JsonIgnore
+    @Schema(description = "Personal que gestionó este artículo del pedido", required = true)
     private Personal personal;
 
     public ArticulosPedido() {

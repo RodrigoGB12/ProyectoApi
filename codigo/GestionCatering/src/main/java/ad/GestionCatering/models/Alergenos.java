@@ -2,20 +2,29 @@ package ad.GestionCatering.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.List;
 
 @Entity
 @Table(name = "alergenos")
 public class Alergenos {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID único del alérgeno", example = "1", required = true)
     private Long id;
+
     @Column(length = 100, nullable = false)
+    @Schema(description = "Nombre del alérgeno", example = "Gluten", required = true)
     private String nombre;
+
+    @Schema(description = "Descripción del alérgeno", example = "Contiene trigo y sus derivados", required = false)
     private String descripcion;
+
     @OneToMany(mappedBy = "alergeno", cascade = CascadeType.ALL)
     @JsonIgnore
+    @Schema(description = "Lista de artículos del menú relacionados con este alérgeno", required = false)
     private List<ArticulosMenuAlergenos> articulosMenuAlergenos;
 
     public Alergenos() {
