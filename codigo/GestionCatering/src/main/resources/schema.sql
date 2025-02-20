@@ -1,9 +1,4 @@
-DROP DATABASE IF EXISTS gestionCatering;
-
-CREATE DATABASE gestionCatering;
-USE gestionCatering;
-
-CREATE TABLE clientes (
+CREATE TABLE IF NOT EXISTS clientes (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     correo_electronico VARCHAR(100) UNIQUE NOT NULL,
@@ -12,7 +7,7 @@ CREATE TABLE clientes (
     dni VARCHAR(20) UNIQUE NOT NULL
 );
 
-CREATE TABLE personal (
+CREATE TABLE IF NOT EXISTS personal (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     rol ENUM('Cocinero', 'Conductor') NOT NULL,
@@ -21,13 +16,13 @@ CREATE TABLE personal (
     dni VARCHAR(20) UNIQUE NOT NULL
 );
 
-CREATE TABLE alergenos (
+CREATE TABLE IF NOT EXISTS alergenos (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255)
 );
 
-CREATE TABLE articulos_menu (
+CREATE TABLE IF NOT EXISTS articulos_menu (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion VARCHAR(255),
@@ -35,7 +30,7 @@ CREATE TABLE articulos_menu (
     precio DECIMAL(10, 2) NOT NULL
 );
 
-CREATE TABLE pedidos (
+CREATE TABLE IF NOT EXISTS pedidos (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     cliente_id BIGINT NOT NULL,
     fecha_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -46,7 +41,7 @@ CREATE TABLE pedidos (
     FOREIGN KEY (personal_id) REFERENCES personal(id)
 );
 
-CREATE TABLE articulos_pedido (
+CREATE TABLE IF NOT EXISTS articulos_pedido (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     pedido_id BIGINT NOT NULL,
     articulo_menu_id BIGINT NOT NULL,
@@ -58,20 +53,10 @@ CREATE TABLE articulos_pedido (
     FOREIGN KEY (personal_id) REFERENCES personal(id)
 );
 
-CREATE TABLE articulos_menu_alergenos (
+CREATE TABLE IF NOT EXISTS articulos_menu_alergenos (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     articulo_menu_id BIGINT NOT NULL,
     alergeno_id BIGINT NOT NULL,
     FOREIGN KEY (articulo_menu_id) REFERENCES articulos_menu(id),
     FOREIGN KEY (alergeno_id) REFERENCES alergenos(id)
-);
-
-ALTER TABLE articulos_menu ADD COLUMN imagen VARCHAR(255);
-
-
-CREATE TABLE usuarios (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    contraseña VARCHAR(255) NOT NULL,
-    rol ENUM('admin', 'user') NOT NULL
 );

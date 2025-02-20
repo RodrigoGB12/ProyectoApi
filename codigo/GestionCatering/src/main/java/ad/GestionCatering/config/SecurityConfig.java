@@ -25,9 +25,11 @@ public class SecurityConfig{
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("auth/login").permitAll()
                         .requestMatchers("admin/**").permitAll()
+                        .requestMatchers("swagger-ui/**","/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("menu/**").permitAll()
                         .anyRequest().authenticated() // Proteger todo lo demás
-
-                )
+                ).headers().frameOptions().sameOrigin().and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
