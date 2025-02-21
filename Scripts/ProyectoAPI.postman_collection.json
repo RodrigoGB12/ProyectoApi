@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f39e9e3b-6019-479e-b6ca-085268e0df88",
+		"_postman_id": "58092290-424b-4679-86e9-07e074881984",
 		"name": "ProyectoAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "40454699"
+		"_exporter_id": "41406285"
 	},
 	"item": [
 		{
@@ -416,7 +416,13 @@
 					"name": "GetAll",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c3VhcmlvIiwiaWF0IjoxNzQwMTc4OTYwLCJleHAiOjE3NDAxODI1NjB9.-wq7g2kLoe2bUJavcr43D6l6OXhNZLeJd4yW4IPROhA",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "localhost:8080/clientes",
 							"host": [
@@ -716,6 +722,53 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "usuario",
+							"value": "usuario",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "pass",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login?usuario=usuario&pass=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "usuario",
+							"value": "usuario"
+						},
+						{
+							"key": "pass",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
