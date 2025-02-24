@@ -28,6 +28,8 @@ public class SecurityConfig{
                         .requestMatchers("swagger-ui/**","/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("menu/**").permitAll()
+                        .requestMatchers("/alergenos/**").permitAll()
+                        .requestMatchers("/articulos-menu-alergenos/**").permitAll()              
                         .anyRequest().authenticated() // Proteger todo lo demás
                 ).headers().frameOptions().sameOrigin().and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
